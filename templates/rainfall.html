@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/rainfallStyle.css') }}">
+    <title>RainFall Prediction</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="container">
+            <!--NAV BAR-->
+            
+            <div class="navbar">
+                <div class="logo-container">
+                    <img src="{{ url_for('static', filename = 'imges/iconAgri.png')}}" class="logo">
+                    <div class="logo-text">AgriNova</div>
+                </div>
+                <!-- Hamburger icon -->
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                <div class="leftNav">
+                    <div class="nav-item">
+                        <div><a href="#Dashboard">Dashboard</a></div>
+                        <div><a href="#Predictions">Predictions</a></div>
+                        <div><a href="#Reports ">Reports</a></div>
+                        <div><a href="#Help">Help</a></div> 
+                    </div>
+                    <div class="Profile">
+                        <a href="#profile">Profile</a>
+                    </div>
+                </div>
+
+              
+            </div>
+
+              <!--hero section-->
+              <div class="heroRainfall">
+                <div class="heroSection">
+                    <div class="headingHeroSection">
+                        <h1>Rainfall Prediction Tool</h1>
+                    </div>
+                    <div class="headingHeropara">
+                        <p>Make data-driven decisions for your agricultural success</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Rcomandation system-->
+                <div class="recommendationSystem">
+                    <!-- Left part input ke liy-->
+                     <div class="inputParmeter">
+
+                        <div class="input-heading">
+                            <h1>Input Parameters</h1>
+                        </div>
+
+                        <form action="{{ url_for('predict_rainfall') }}" method="POST">
+                            <!--INPUT SECTION 1-->
+                            <div class="inputSection">
+                                <div class="inputSection-heading">
+                                    <h1>Pressure</h1>
+                                </div>
+
+                                <div class="parameters">
+                                    <div>
+                                        <input type="number" name="pressure" id="pressure" placeholder="Enter atmospheric pressure" required>
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img src="{{ url_for('static', filename = 'imges/pressure.png')}}" alt="">
+                                        <div class="parameters-text">hPa</div>
+                                    </div>
+    
+                                </div>
+                                <div class="description">
+                                    <p>Current atmospheric pressure at your location</p>
+                                </div>
+                            </div>
+                             <!--INPUT SECTION 2-->
+                             <div class="inputSection">
+
+                                <div class="inputSection-heading">
+                                    <h1>Dew Point</h1>
+                                </div>
+                                <div class="parameters">
+                                    <div>
+                                        <input type="text" name="dewpoint" id="dewpoint"  placeholder="Enter dew point temperature" required>
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img  src="{{ url_for('static', filename = 'imges/dew-point.png')}}" alt="">
+                                        <div class="parameters-text">°C</div>
+                                    </div>
+    
+                                </div>
+                                <div class="description">
+                                    <p>Temperature at which dew forms</p>
+                                </div>
+                            </div>
+                             <!--INPUT SECTION 3-->
+                             <div class="inputSection">
+                                <div class="inputSection-heading"><h1>Humidity</h1></div>
+                                <div class="parameters">
+                                    <div>
+                                        <input type="text" name="humidity" id="humidity" placeholder="Enter relative humidity" required>
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img  src="{{ url_for('static', filename = 'imges/cloud-cover.png')}}" alt="">
+                                        <div class="parameters-text">%</div>
+                                    </div>
+    
+                                </div>
+                                <div class="description">
+                                    <p>Amount of water vapor in the air</p>
+                                </div>
+                            </div>
+                            
+                            <!--INPUT SECTION 4-->
+                            <div class="inputSection">
+                                <div class="inputSection-heading">
+                                    <h1>Cloud Cover</h1>
+                                </div>
+                                <div class="parameters">
+                                    <div>
+                                        <input type="text" placeholder="Enter cloud coverage" name="cloudcover" id="cloudcover" required>
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img src="{{ url_for('static', filename = 'imges/cloud-cover.png')}}" alt="">
+                                        <div class="parameters-text">%</div>
+                                    </div>
+    
+                                </div>
+                                <div class="description">
+                                    <p>Percentage of sky covered by clouds</p>
+                                </div>
+                            </div>
+                             <!--INPUT SECTION 5-->
+                             <div class="inputSection">
+                                <div class="inputSection-heading"><h1>Sunshine</h1></div>
+                                <div class="parameters">
+                                    <div>
+                                        <input type="text" placeholder="Enter sunshine duration" name="sunshine" id="sunshine" required>
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img src="{{ url_for('static', filename = 'imges/sunShine.png')}}" alt="">
+                                        <div class="parameters-text">hours</div>
+                                    </div>
+    
+                                </div>
+                                <div class="description">
+                                    <p>Total hours of sunshine today</p>
+                                </div>
+                            </div>
+                            <!--INPUT SECTION 6-->
+                            <div class="inputSection">
+                                <div class="inputSection-heading"><h1>Wind Direction</h1></div>
+                                <div class="parameters">
+                                    <div>
+                                        <input type="text" placeholder="Enter wind direction" name="winddirection" id="winddirection" required >
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img  src="{{ url_for('static', filename = 'imges/wind-direction.png')}}" alt="">
+                                        <div class="parameters-text">degrees</div>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Direction from which the wind is blowing (0-360°)</p>
+                                </div>
+                            </div>
+                             <!--INPUT SECTION 7-->
+                             <div class="inputSection">
+                                <div class="inputSection-heading"><h1>Wind Speed</h1></div>
+                                <div class="parameters">
+                                    <div>
+                                        <input type="text" step="0.1" placeholder="Enter wind speed" name="windspeed" id="windspeed" required>
+                                    </div>
+                                    <div class="parameter-icon-cont">
+                                        <img  src="{{ url_for('static', filename = 'imges/wind-speed.png')}}" alt="">
+                                        <div class="parameters-text">km/h</div>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Current wind speed at your location</p>
+                                </div>
+                            </div>
+                            
+                            <!--Button-->
+                            <div class="btn">
+                                <div class="predict_rainfall">
+                                    <button>Predict RainFall</button>
+                                </div>
+                                <div class="rest_btn">
+                                    <button type="reset">Reset</button> 
+                                </div>
+                            </div>
+                        </form>
+                     </div>
+    
+                     <!--Right part suggestion-->
+                     <div class="info-and-tip">
+
+                        <!-- Result prediction -->
+                        {% if prediction_result %}
+                        <div class="result-container">
+                            <div class="result-header">
+                                <img src="{{ url_for('static', filename = 'images/rainfall.png')}}" alt="">
+                                <h2>Rainfall Prediction Result</h2>
+                            </div>
+                            <div class="result-value">
+                                {{ prediction_result }}
+                            </div>
+                            <!-- <div class="result-tip">
+                                <img src="{{ url_for('static', filename = 'imges/tips-icon.png')}}" alt="">
+                                <p>Based on your input parameters, this is the expected rainfall amount</p>
+                            </div> -->
+                        </div>
+                        {% endif %}
+    
+                        <div class="info-how-it-work">
+
+                            <div class="info-heading">
+                                <h1>How it works</h1>
+                            </div>
+                            <div class="info-detail">
+                                <!--detail 1-->
+                                <div class="detail">
+                                    <img  src="{{ url_for('static', filename = 'imges/data-input.png')}}" alt="">
+                                    
+                                   <div class="heading-subheading">
+                                    
+                                        <h1>Data Input</h1>
+                                    
+                                    
+                                        <p>Enter your local weather parameters</p>
+                                 
+                                   </div>
+                                </div>
+                                 <!--detail 2-->
+                                 <div class="detail">
+                                    <img  src="{{ url_for('static', filename = 'imges/ai-analysis.png')}}" alt="">
+                                    <div class="heading-subheading">
+                                        
+                                            <h1>Ai Analysis</h1>
+                                            <p>Our advanced algorithms process your data</p>
+                                        
+                                    </div>
+                                   
+                                </div>
+                                 <!--detail 3-->
+                                 <div class="detail">
+                                    <img  src="{{ url_for('static', filename = 'imges/get-result.png')}}" alt="">
+                                    <div class="heading-subheading">
+                                        
+                                            <h1>Get Results</h1>
+                                            <p>Receive accurate rainfall predictions</p>
+                                      
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                         </div>
+    
+                         <div class="info-tips-guid">
+                            <div class="tip-guidline">
+                                <div class="tip-heading">
+                                    <img  src="{{ url_for('static', filename = 'imges/tips-icon.png')}}" alt="">
+                                    <h1>Tips & Guidelines</h1>
+                                </div>
+                                <div class="tip-guidline-detail">
+                                    <!--line 1-->
+                                    <div class="line-info">
+                                        <img src="{{ url_for('static', filename = 'imges/arrow.png')}}" alt="">
+                                        <p>Enter data from reliable weather stations</p>
+                                    </div>
+                                    <!--line 2-->
+                                    <div class="line-info">
+                                        <img src="{{ url_for('static', filename = 'imges/arrow.png')}}" alt="">
+                                        <p>Update readings at consistent times</p>
+                                    </div>
+                                    <!--line 3-->
+                                    <div class="line-info">
+                                        <img src="{{ url_for('static', filename = 'imges/arrow.png')}}" alt="">
+                                        <p>Consider seasonal variations</p>
+                                    </div>
+                                    <!--line 4-->
+                                    <div class="line-info">
+                                        <img src="{{ url_for('static', filename = 'imges/arrow.png')}}" alt="">
+                                        <p>Verify units before submission</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                         </div>
+
+                        
+                     </div>
+                </div>
+            
+                 <!-- Footer section-->
+
+              <div class="footerSection">
+
+                <!--Information-->
+                <div class="info-section">
+                    <div class="info-section-top">
+                        <!--info container 1-->
+                    <div class="info-container">
+
+                        <div class="logo-container">
+                            <img src="{{ url_for('static', filename = 'imges/iconAgri.png')}}" class="logo">
+                            <div class="logo-text">AgriNova</div>
+                        </div>
+                        <div class="solgan">
+                            <p>Empowering farmers with data-driven agricultural solutions for better crop management and sustainable farming practices.</p>
+                        </div>
+                    </div>
+
+                    <!--Quick links-->
+                    <div class="quick-link">
+                        <div class="quick-heading">
+                            <h1>Quick Links</h1>
+                        </div>
+                        <div class="quick-items">
+                            <div>
+                                <a href="#">Weather Forecast</a>
+                            </div>
+                            <div>
+                                <a href="#">Crop Calendar</a>
+                            </div>
+                            
+                            <div>
+                                <a href="#">Soil Analysis</a>
+                            </div>
+                            
+                            <div>
+                                <a href="#">Market Prices</a>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    
+
+                    <!--Follow us-->
+                    <div class="follow-us">
+                        <div class="follow-heading">
+                            <h1>Follow Us</h1>
+                        </div>
+
+                        <div class="follow-us-icons">
+                            <div><img src="{{ url_for('static', filename = 'imges/twiter.png')}}" alt=""></div>
+                            <div><img src="{{ url_for('static', filename = 'imges/facebook.png')}}" alt=""></div>
+                            <div><img src="{{ url_for('static', filename = 'imges/linkdin.png')}}" alt=""></div>
+                            <div><img src="{{ url_for('static', filename = 'imges/insta.png')}}" alt=""></div>
+
+                        </div>
+                    </div>
+                    </div>
+                     <!--Copyright-->
+                <div class="copyright">
+                    <p>© 2024 AgriNova. All rights reserved.</p>
+                </div>
+
+
+                </div>
+               
+              </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
+</body>
+</html>

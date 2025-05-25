@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AgriNova</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="container">
+            <!--NAV BAR-->
+            <div class="navbar">
+                <div class="logo-container">
+                    <img src="{{ url_for('static', filename = 'imges/iconAgri.png')}}" class="logo" loading="lazy">
+                    <div class="logo-text">AgriNova</div>
+                </div>
+                 <!-- Hamburger icon -->
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                <div class="leftNav">
+                    <div class="nav-item">
+                        <div><a href="#home">Home</a></div>
+                        <div><a href="#modules">Solution</a></div>
+                        <div><a href="#about ">About</a></div>
+                        <div><a href="#contact">Contact</a></div> 
+                        <div id="google_translate_element"></div>
+                    </div>
+                    
+
+                    <div class="getStarted">
+                        <a href="#Getstart">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <!-- HEro section -->
+             <div class="hero-section" id="home">
+                <div class="hero-section-LR">
+                    <div class="hero-section-left">
+                        <div class="hero-section-heading">
+                            Welcome to AgriNova: Your Partner in Smarter Farming
+                        </div>
+
+                        <div class="hero-section-sub_heading">
+                            Empowering Farmers with AI-Driven Insights and Predictive Analytics
+                        </div>
+
+                        <div class="hero-section-btn">
+                            <a href="#modules">Explore Our Prediction Modules</a>
+                        </div>
+                        
+                    </div>
+    
+                    <!--Rigth part-->
+                    <div class="hero-section-right">
+                        <img src="{{ url_for('static', filename = 'imges/crop_img.png')}}" alt="" loading="lazy">
+                    </div>
+                </div>
+             </div>
+             <!--Modules section -->
+             <div class="modules-section"   id="modules" >
+                <div class="modules-heading">
+                    Our Smart Prediction Modules
+                </div>
+                <div class="sub-heading">
+                    Leverage cutting-edge AI technology to optimize your farming operations
+                </div>
+                <div class="modules">
+                    <!--box1-->
+                    <!-- Weather Forecasting -->
+                    <div class="box">
+                        <img src="{{ url_for('static', filename = 'imges/wheather.png')}}" class="icon" loading="lazy">
+                        <h2>Weather Forecasting</h2>
+                        <p>Get hyper-local weather forecasts to optimize planting, irrigation, and harvesting schedules.</p>
+                        <div class="tryNow">
+                            <a href="{{ url_for('weather') }}">Try Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Rain Fall Prediction -->
+                    <div class="box">
+                        <img src="{{ url_for('static', filename = 'imges/irrigation.png')}}" class="icon" loading="lazy">
+                        <h2>Rain Fall Prediction</h2>
+                        <p>Leverage advanced AI models to forecast crop yields based on weather, soil health, and historical data.</p>
+                        <div class="tryNow">
+                            <a href="{{ url_for('rainfall') }}">Try Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Crop Recommendation System -->
+                    <div class="box">
+                        <img src="{{ url_for('static', filename = 'imges/soil.png')}}" class="icon" loading="lazy">
+                        <h2>Crop Recommendation System</h2>
+                        <p>Leverage advanced AI models to forecast crop yields based on weather, soil health, and historical data.</p>
+                        <div class="tryNow">
+                            <a href="{{ url_for('crop_recommendation') }}">Try Now</a>
+                        </div>
+                    </div>
+
+                    <!--box4-->
+                    <div class="box">
+                        <img src="{{ url_for('static', filename = 'imges/pest.png')}}" class="icon" loading="lazy">
+                        <h2>Pest and Disease Prediction</h2>
+                        <p>Identify potential pest outbreaks and disease risks before they impact your crops.</p>
+                       <div class="tryNow">
+                            <a href="#tryNow">Try Now</a>
+                        </div>
+                    </div>
+                    
+                    <!--box5-->
+                    <div class="box">
+                        <img src="{{ url_for('static', filename = 'imges/marketPrice.png')}}" class="icon" loading="lazy">
+                        <h2>Market Price Prediction</h2>
+                        <p>Leverage advanced AI models to forecast crop yields based on weather, soil health, and historical data.</p>
+                        <div class="tryNow">
+                            <a href="#tryNow">Try Now</a>
+                        </div>
+                    </div>
+                    <!--box6-->
+                    <div class="box">
+                        <img src="{{ url_for('static', filename = 'imges/cropYield.png')}}" class="icon" loading="lazy">
+                        <h2>Crop Yield Prediction</h2>
+                        <p>Leverage advanced AI models to forecast crop yields based on weather, soil health, and historical data.</p>
+                        <div class="tryNow">
+                            <a href="#tryNow">Try Now</a>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <!--Feedback section-->
+             <div class="feedback">
+                <div class="feedback-heading">
+                   <h1>
+                    What Farmers Are Saying About AgriNova
+                   </h1>
+                </div>
+
+                <div class="farmerFeedback">
+                    <!--box 1-->
+                    <div class="feedBox">
+                        <div class="introFarmer">
+                            <img src="{{ url_for('static', filename = 'imges/Rajesh.png')}}" alt="" loading="lazy">
+                            <div class="nameFarmer">
+                                <h1>Rajesh Kumar</h1>
+                                <h2>Wheat Farmer</h2>
+                            </div>
+                        </div>
+                        <p>" AgriNova's crop yield predictions helped me increase my harvest by 20%! "</p>
+                    </div>
+
+                    <!--box 2-->
+                    <div class="feedBox">
+                        <div class="introFarmer">
+                            <img src="{{ url_for('static', filename = 'imges/priya.png')}}" alt="" loading="lazy">
+                            <div class="nameFarmer">
+                            <h1>Priya Singh</h1>
+                            <h2>Organic Farmer</h2>
+                            </div>
+                        </div>
+                        <p>" The pest prediction module saved my entire crop season! "</p>
+                    </div>
+                </div>
+             </div>
+             <!--Subscribe-->
+             <div class="subscribe" id="contact">
+                <div class="subscribe-content">
+                    <div class="subscribe-heading">
+                        <p>Stay Updated with AgriNova Insights</p>
+                    </div>
+                    <div class="subscribe-SubHeading">
+                        <p>Subscribe to our newsletter for the latest updates and farming tips!</p>
+                    </div>
+                    <div class="subscribe-Detail">
+                        <div class="email">
+                            <input type="email" placeholder="Enter your email">
+                        </div>
+                        <div class="subscribe-btn">
+                            <a href="#subscribe-btn">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+             <!-- Footer section-->
+              <div class="footerSection" >
+                <!--Information-->
+                <div class="info-section">
+                    <div class="info-section-top">
+                        <!--info container 1-->
+                    <div class="info-container">
+                        <div class="logo-container">
+                            <img src="{{ url_for('static', filename = 'imges/iconAgri.png')}}" class="logo" loading="lazy">
+                            <div class="logo-text">AgriNova</div>
+                        </div>
+                        <div class="solgan">
+                            <p>Revolutionizing agriculture with smart prediction technologies.</p>
+                        </div>
+                    </div>
+
+                    <!--Quick links-->
+                    <div class="quick-link">
+                        <div class="quick-heading">
+                            <h1>Quick Links</h1>
+                        </div>
+                        <div class="quick-items">
+                            <div>
+                                <a href="#aboutUs">About us</a>
+                            </div>
+                            <div>
+                                <a href="#Solutions">Solutions</a>
+                            </div>
+                            <div>
+                                <a href="#Contact">Contact</a>
+                            </div>
+                            <div>
+                                <a href="#Privacy">Privacy Policy</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Contact Info-->
+                    <div class="contact-info">
+                        <div class="con-heading">
+                            <h1>Contact Info</h1>
+                        </div>
+                        <div class="contact-items">
+                            <div class="address">
+                                <img src="{{ url_for('static', filename = 'imges/location-icon.png')}}" alt="" loading="lazy">
+                                <p>123 Farming Street, Agri City</p>
+                            </div>
+                            <div class="phone">
+                                <img src="{{ url_for('static', filename = 'imges/phn-icon.png')}}" alt="" loading="lazy">
+                                <p>+91 8085283688</p>
+                            </div>
+                            <div class="mail">
+                                <img src="{{ url_for('static', filename = 'imges/mail-icon.png')}}" alt="" loading="lazy">
+                                <p>contact@agrinova.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Follow us-->
+                    <div class="follow-us">
+                        <div class="follow-heading">
+                            <h1>Follow Us</h1>
+                        </div>
+                        <div class="follow-us-icons">
+                            <div><img src="{{ url_for('static', filename='imges/twiter.png') }}" alt="Twitter" loading="lazy"></div>
+                            <div><img src="{{ url_for('static', filename='imges/facebook.png') }}" alt="Facebook" loading="lazy"></div>
+                            <div><img src="{{ url_for('static', filename='imges/linkdin.png') }}" alt="LinkedIn" loading="lazy"></div>
+                            <div><img src="{{ url_for('static', filename='imges/insta.png') }}" alt="Instagram" loading="lazy"></div>
+                        </div>
+                    </div>
+                    </div>
+                     <!--Copyright-->
+                <div class="copyright">
+                    <p>© 2024 AgriNova. All rights reserved.</p>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
+
+        
+    
+</body>
+</html>

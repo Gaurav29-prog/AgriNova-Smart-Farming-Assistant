@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecasting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather.css') }}">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="container">
+            <!-- NAV bar -->
+            <div class="navbar">
+                <div class="logo-container">
+                    <img src="{{ url_for('static', filename='image/weather_icon.png') }}" class="logo" alt="AgriNova Logo">
+                    <div class="logo-text">AgriNova</div>
+                </div>
+                <div class="leftNav">
+                    <div class="nav-item">
+                        <div><a href="#home">Home</a></div>
+                        <div><a href="#solution">Solution</a></div>
+                        <div><a href="#about">About</a></div>
+                        <div><a href="#contact">Contact</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero section -->
+            <div class="herosection">
+                <div class="heading">
+                    <h1>AgriNova Weather Forecasting Tool</h1>
+                </div>
+                <div class="sub_heading">
+                    <p>Accurate Weather Insights for Smarter Farming Decisions. Stay ahead of the weather with precise, location-specific forecasts tailored for agriculture.</p>
+                </div>
+            </div>
+
+            <!-- Output section -->
+            <div class="output_section">
+                <!-- City Input -->
+                <div class="city_input">
+                    <div class="city_heading">
+                        <h1>Enter the city</h1>
+                    </div>
+                    <form action="/get_weather" method="POST">
+                        <input type="text" name="city" placeholder="Enter your farm's address or region" required>
+                        <button type="submit" class="btn">
+                            <img src="{{ url_for('static', filename='image/location_search.png') }}" alt="Search Icon">
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Weather display -->
+                <div class="weather_display">
+                    <div class="city_name">
+                        <div class="city_heading">
+                            Today's Weather
+                        </div>
+                        <div class="city_subheading">
+                            {{ city_name }}, {{ country_name }}
+                        </div>
+                    </div>
+
+                    <div class="show_result">
+                        {% if temperature and humidity and pressure %}
+                        <div class="temp_class">
+                            <div class="weather_icon">
+                                <img src="http://openweathermap.org/img/wn/{{ weather_icon }}@2x.png" alt="Weather Icon">
+                            </div>
+                            <div class="tem_output">
+                                <h3>{{ temperature|round(2) }} °C</h3>
+                            </div>
+                        </div>
+
+                        <!--more details of the environment-->
+                        <div class="grid-container">
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/humidity.png') }}" alt="Humidity Icon">
+                                <h3>Humidity</h3>
+                                {{ humidity }}%
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/pressure.png') }}" alt="Pressure Icon">
+                                <h3>Pressure</h3>{{ pressure }} hPa
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/dew_point.png') }}" alt="Dew Point Icon">
+                                <h3>Dew Point</h3>{{ dew_point|round(2) }} °C
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/wind_speed.png') }}" alt="Wind Speed Icon">
+                                <h3>Wind Speed</h3>{{ wind_speed|round(2) }} km/hr
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/wind-direction.png') }}" alt="Wind Direction Icon">
+                                <h3>Wind Direction</h3>{{ wind_direction }}°
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/cloud_cover.png') }}" alt="Cloud Cover Icon">
+                                <h3>Cloud Cover</h3>{{ cloud_cover }}%
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/weather_icon.png') }}" alt="Sunrise Icon">
+                                <h3>Sunrise</h3>{{ sunrise }}
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/sunset.png') }}" alt="Sunset Icon">
+                                <h3>Sunset</h3>{{ sunset }}
+                            </div>
+                            <div class="output">
+                                <img src="{{ url_for('static', filename='image/weather_icon.png') }}" alt="Sunshine Icon">
+                                <h3>Sunshine Hours</h3>{{ sunshine_hours }} hours
+                            </div>
+                        </div>
+                           
+                        {% else %}
+                            <div class="output">
+                                <p style="color: red;">No weather data available. Please check the city name and try again.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Basic information -->
+                <div class="information_bacis">
+                    <!-- Box 1 -->
+                    <div class="box_info">
+                        <img src="{{ url_for('static', filename='image/weather_alerts.png') }}" alt="Weather Alerts Icon">
+                        <h1>Weather Alerts</h1>
+                        <p>Receive real-time alerts for extreme weather conditions affecting your crops.</p>
+                    </div>
+                    <!-- Box 2 -->
+                    <div class="box_info">
+                        <img src="{{ url_for('static', filename='image/Agrimpact.png') }}" alt="Agricultural Impact Icon">
+                        <h1>Agricultural Impact</h1>
+                        <p>Understand how weather patterns will affect your crops and farming activities.</p>
+                    </div>
+                    <!-- Box 3 -->
+                    <div class="box_info">
+                        <img src="{{ url_for('static', filename='image/historical_data.png') }}" alt="Historical Data Icon">
+                        <h1>Historical Data</h1>
+                        <p>Compare current forecasts with historical patterns for better planning.</p>
+                    </div>
+                </div>
+
+                <!-- Analysis -->
+                <div class="weather_analysis">
+                    <div class="analysis">
+                        <div class="analysis_heading">
+                            <h1>Agricultural Impact Analysis</h1>
+                        </div>
+                        <div class="detail">
+                            <!-- Left -->
+                            <div class="current_conditions">
+                                <div class="condition_heading">
+                                    <h1>Current Conditions</h1>
+                                </div>
+                                <div class="condition_points">
+                                    <!-- Point 1 -->
+                                    <div class="point">
+                                        <img src="{{ url_for('static', filename='image/optimal_temp.png') }}" alt="Optimal Temperature Icon">
+                                        <p>Optimal temperature for crop growth</p>
+                                    </div>
+                                    <!-- Point 2 -->
+                                    <div class="point">
+                                        <img src="{{ url_for('static', filename='image/drop.png') }}" alt="Humidity Icon">
+                                        <p>Moderate humidity levels</p>
+                                    </div>
+                                    <!-- Point 3 -->
+                                    <div class="point">
+                                        <img src="{{ url_for('static', filename='image/ne_low.png') }}" alt="Precipitation Icon">
+                                        <p>Low chance of precipitation</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right -->
+                            <div class="recommendations">
+                                <div class="recommendation_heading">
+                                    <h1>Recommendations</h1>
+                                </div>
+                                <div class="recommendation_detail">
+                                    <ul>
+                                        <li>Consider irrigation in the next 48 hours</li>
+                                        <li>Optimal conditions for pesticide application</li>
+                                        <li>Monitor soil moisture levels</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer section-->
+            <div class="footerSection">
+                <!--Information-->
+                <div class="info-section">
+                    <div class="info-section-top">
+                        <!--info container 1-->
+                        <div class="info-container">
+                            <div class="logo-container">
+                                <img src="{{ url_for('static', filename='image/weather_icon.png') }}" class="logo" alt="AgriNova Logo">
+                                <div class="logo-text-footer">AgriNova</div>
+                            </div>
+                            <div class="solgan">
+                                <p>Dedicated to providing farmers with reliable, actionable weather insights.</p>
+                            </div>
+                        </div>
+
+                        <!--Quick links-->
+                        <div class="quick-link">
+                            <div class="quick-heading">
+                                <h1>Quick Links</h1>
+                            </div>
+                            <div class="quick-items">
+                                <div>
+                                    <a href="#Weather_Forecast">Weather Forecast</a>
+                                </div>
+                                <div>
+                                    <a href="#Dashboard">Dashboard</a>
+                                </div>
+                                <div>
+                                    <a href="#Farm_Management">Farm Management</a>
+                                </div>
+                                <div>
+                                    <a href="#Resources">Resources</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Contact Info-->
+                        <div class="contact-info">
+                            <div class="con-heading">
+                                <h1>Contact Info</h1>
+                            </div>
+                            <div class="contact-items">
+                                <div class="address">
+                                    <img src="{{ url_for('static', filename='imges/location-icon.png') }}" alt="Location Icon">
+                                    <p>123 Farming Street, Agri City</p>
+                                </div>
+                                <div class="phone">
+                                    <img src="{{ url_for('static', filename='imges/phn-icon.png') }}" alt="Phone Icon">
+                                    <p>+91 8085283688</p>
+                                </div>
+                                <div class="mail">
+                                    <img src="{{ url_for('static', filename='imges/mail-icon.png') }}" alt="Email Icon">
+                                    <p>contact@agrinova.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Follow us-->
+                        <div class="follow-us">
+                            <div class="follow-heading">
+                                <h1>Follow Us</h1>
+                            </div>
+                            <div class="follow-us-icons">
+                                <div><img src="{{ url_for('static', filename='imges/twiter.png') }}" alt="Twitter"></div>
+                                <div><img src="{{ url_for('static', filename='imges/facebook=icon.png') }}" alt="Facebook"></div>
+                                <div><img src="{{ url_for('static', filename='imges/linkdin.png') }}" alt="LinkedIn"></div>
+                                <div><img src="{{ url_for('static', filename='imges/insta.png') }}" alt="Instagram"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Copyright-->
+                    <div class="copyright">
+                        <p>© 2024 AgriNova. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
