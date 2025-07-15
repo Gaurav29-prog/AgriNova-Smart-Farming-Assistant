@@ -21,8 +21,6 @@ def home():
 def crop_recommendation():
     return render_template('crop_recom.html')
 
-
-
 # Load models and scalers once when the application starts
 try:
     model_2 = pickle.load(open('crop_recommendation_model.pkl', 'rb'))
@@ -33,6 +31,7 @@ except Exception as e:
     # Handle error appropriately (maybe disable prediction functionality)
 
 crop_dict = {
+    
     1: "Rice", 2: "Maize", 3: "Jute", 4: "Cotton", 5: "Coconut", 
     6: "Papaya", 7: "Orange", 8: "Apple", 9: "Muskmelon", 10: "Watermelon",
     11: "Grapes", 12: "Mango", 13: "Banana", 14: "Pomegranate", 15: "Lentil",
@@ -100,7 +99,7 @@ def predict_crop():
             results.append({
                 "name": crop,
                 "image": crop_images.get(crop, "default_crop.png"),  # PNG fallback
-                "confidence": f"{conf}%",
+                # "confidence": f"{conf}%",
                 "conditions": {
                     "Temp": f"{features[3]}°C",
                     "Humidity": f"{features[4]}%",
